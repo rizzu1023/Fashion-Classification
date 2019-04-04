@@ -108,7 +108,7 @@ def account():
 # @login_required
 def classify():
     value = FashionClassifier.classifier("image_path")
-    value = ""
+    # value = ""
     image_file = 'no_image'
     form = ClassifyForm()
     if form.validate_on_submit():
