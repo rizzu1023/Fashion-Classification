@@ -31,9 +31,11 @@ class Post(db.Model):
 class Fashion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     img = db.Column(db.String(30), nullable=False, default='no_img.jpg')
-    catg = db.relationship('Catergory', backref='owner')
+    # catg = db.relationship('Catergory', backref='owner')
+    catg = db.Column(db.String(30), nullable=False, default="undefined")
 
-class Catergory(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    catg_name = db.Column(db.String(30), nullable=False)
-    img_id = db.Column(db.Integer, db.ForeignKey('fashion.id'))
+
+# class Catergory(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     catg_name = db.Column(db.String(30), nullable=False)
+#     img_id = db.Column(db.Integer, db.ForeignKey('fashion.id'))

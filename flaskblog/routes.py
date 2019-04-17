@@ -6,7 +6,7 @@ from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, Clas
 from flaskblog import app,db,bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 #models
-from flaskblog.models import User,Post,Fashion,Catergory
+from flaskblog.models import User,Post,Fashion
 
 posts = [
     {
