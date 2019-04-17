@@ -52,3 +52,9 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('That email is taken. Please choose a different email')
     submit = SubmitField('Update')
+
+
+class ClassifyForm(FlaskForm):
+    img = FileField('Image')
+
+    submit = SubmitField('Classify')

@@ -2,11 +2,11 @@ import secrets
 import os
 from PIL import Image
 from flask import Flask, render_template, flash, redirect, url_for, request
-from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, ClassifyForm
 from flaskblog import app,db,bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 #models
-from flaskblog.models import User,Post
+from flaskblog.models import User,Post,Fashion,Catergory
 
 posts = [
     {
@@ -44,6 +44,8 @@ def register():
     return render_template('register.html',  form=form)
 
 
+
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     if current_user.is_authenticated:
@@ -59,9 +61,7 @@ def login():
             flash('Login Unsuccessful. please check username & password', 'danger')
     return render_template('login.html', form=form)
 
-@app.route("/about")
-def about():
-    return render_template('about.html')
+
 
 @app.route("/logout")
 def logout():
@@ -101,3 +101,20 @@ def account():
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/'+current_user.image_file)
     return render_template('account.html', image_file=image_file, form=form)
+
+
+@app.route("/about", methods=['GET','POST'])
+# @login_required
+def about():
+    image_file = 'no_image'
+    form = ClassifyForm()
+    if form.validate_on_submit():
+        if form.img.data:
+            picture_file = save_picture(form.img.data)
+        # filestr = form.img.data.filename
+        f = Fashion(img=picture_file)
+        db.session.add(f)
+        db.session.commit()
+        flash('Image uploaded Successfully')
+        image_file = url_for('static', filename='profile_pics/'+picture_file)
+    return render_template('about.html', image_file=image_file, form=form)

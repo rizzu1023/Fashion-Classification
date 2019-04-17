@@ -27,3 +27,13 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}','{self.date_posted}')"
+
+class Fashion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    img = db.Column(db.String(30), nullable=False, default='no_img.jpg')
+    catg = db.relationship('Catergory', backref='owner')
+
+class Catergory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    catg_name = db.Column(db.String(30), nullable=False)
+    img_id = db.Column(db.Integer, db.ForeignKey('fashion.id'))
