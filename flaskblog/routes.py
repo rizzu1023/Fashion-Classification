@@ -7,6 +7,7 @@ from flaskblog import app,db,bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 #models
 from flaskblog.models import User,Post,Fashion
+from flaskblog.core import FashionClassifier
 
 posts = [
     {
@@ -103,9 +104,11 @@ def account():
     return render_template('account.html', image_file=image_file, form=form)
 
 
-@app.route("/about", methods=['GET','POST'])
+@app.route("/classify", methods=['GET','POST'])
 # @login_required
-def about():
+def classify():
+    value = FashionClassifier.classifier("image_path")
+    # value = ""
     image_file = 'no_image'
     form = ClassifyForm()
     if form.validate_on_submit():
@@ -117,4 +120,4 @@ def about():
         db.session.commit()
         flash('Image uploaded Successfully')
         image_file = url_for('static', filename='profile_pics/'+picture_file)
-    return render_template('about.html', image_file=image_file, form=form)
+    return render_template('classify.html', image_file=image_file, value=value, form=form)
