@@ -107,8 +107,7 @@ def account():
 @app.route("/classify", methods=['GET','POST'])
 # @login_required
 def classify():
-    value = FashionClassifier.classifier("image_path")
-    # value = ""
+    output = "image not found"
     image_file = 'no_image'
     form = ClassifyForm()
     if form.validate_on_submit():
@@ -119,6 +118,8 @@ def classify():
         db.session.add(f)
         db.session.commit()
         flash('Image uploaded Successfully')
+        output = FashionClassifier.classifier(picture_file)
+        
         image_file = url_for('static', filename='profile_pics/'+picture_file)
-    return render_template('classify.html', image_file=image_file, value=value, form=form)
+    return render_template('classify.html', image_file=image_file, output=output, form=form)
  

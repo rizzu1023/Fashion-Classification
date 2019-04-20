@@ -5,13 +5,14 @@ import os
 from keras import backend as K
 # from flaskblog.core import finalized_model.sav
 
-def classifier(image_path):
+def classifier(image_name):
     filename = 'finalized_model.sav'
-    
     model = pickle.load(open(filename, 'rb'))
     # cwd = os.getcwd()
 
-    loc =r'C:\Users\Rizzu1023\Desktop\ML-MP\sample\sandal.jpg'
+    path = r"C:\Users\Rizzu1023\Desktop\ML-MP\flaskblog\static\profile_pics"
+    name = "88fa542feb993d3f.jpg"
+    loc = "{}\{}".format(path,image_name)
 
     dict = {0:"T-shirt/top",1:"Trouser",2:"Pullover",3:"Dress",4:"Coat",5:"Sandal",6:"Shirt",7:"Sneaker",8:"Bag",9:"Ankle boot"}
     #loc =loc.replace("1",str(i))
