@@ -121,3 +121,4 @@ def classify():
         flash('Image uploaded Successfully')
         image_file = url_for('static', filename='profile_pics/'+picture_file)
     return render_template('classify.html', image_file=image_file, value=value, form=form)
+ 

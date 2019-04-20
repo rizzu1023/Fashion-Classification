@@ -18,12 +18,16 @@
      </div>
      <div class="form-group">
        {{ form.submit(class="btn btn-outline-info")}}
+      <p> {{ value }} </p>
+
      </div>
    </form>
    <br>
    {% if image_file=='no_image' %}
    {% else %}
+      <p> {{ value }} </p>
       <img src="{{ image_file }}">
    {% endif %}
 {% endblock %}
+
 
