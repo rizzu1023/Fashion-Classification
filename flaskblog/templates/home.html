@@ -1,16 +1,47 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    {% for post in posts %}
-    <article class="media content-section">
-        <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="#">{{ post.author }}</a>
-            <small class="text-muted">{{ post.date_posted }}</small>
-          </div>
-          <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-          <p class="article-content">{{ post.content }}</p>
+    
+    <section class="intro-section">
+      <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3>Fashion Classification</h3>
+          <p>The problem of Image Classification goes like this: Given a set of images that are all labeled with a single category, we are asked to predict these categories for a novel set of test images and measure the accuracy of the predictions. There are a variety of challenges associated with this task, including viewpoint variation, scale variation, intra-class variation, image deformation, image occlusion, illumination conditions, background clutter etc.</p>
+          <a href="/classify" class="btn btn-success">Get Started</a>
         </div>
-    </article>
-    {% endfor %}
+      </div>
+      </div>
+    </section>
+
+    <section class="process-section text-center">
+        <div class="container">
+        <div class="row">
+          <div class="col-md-12 heading">
+              <h2>How it works</h2>
+          </div>
+          <div class="col-md-4 content">
+              <i class="fas fa-pen-square"></i>
+              <h4>Training</h4>
+              <p>During training session you are required to provide the dataset and the target field column id. For example if the target variable is in third column then enter 3 as the input. By default 50% data is choosen for training a model. </p>
+
+          </div>
+          <div class="col-md-4 content">
+              <i class="fas fa-mobile-alt"></i>
+              <h4>Testing</h4>
+              <p>Testing is basically prediction of same dataset and checking the differences in actual and predicted result from built model. Based on this we can check how far smart our model is. By default 50% of rest dataset from training dataset is used to check the result.</p>
+          </div>
+          <div class="col-md-4 content">
+              <i class="fas fa-envelope"></i>
+              <h4>Prediction</h4>
+              <p>For prediction session, we can use new dataset for prediction of result from built model. By default prediction of data from model is done in testing only for convenience purpose.</p>
+
+          </div>
+        </div>
+        </div>
+      </section>
+  
+
+    
+
 {% endblock %}
