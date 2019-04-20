@@ -108,7 +108,7 @@ def account():
 # @login_required
 def classify():
     output = "image not found"
-    image_file = 'no_image'
+    image = 'no_image'
     form = ClassifyForm()
     if form.validate_on_submit():
         if form.img.data:
@@ -117,9 +117,9 @@ def classify():
         f = Fashion(img=picture_file)
         db.session.add(f)
         db.session.commit()
-        flash('Image uploaded Successfully')
+        # flash('Image uploaded Successfully')
         output = FashionClassifier.classifier(picture_file)
         
-        image_file = url_for('static', filename='profile_pics/'+picture_file)
-    return render_template('classify.html', image_file=image_file, output=output, form=form)
- 
+        image = url_for('static', filename='profile_pics/'+picture_file)
+    return render_template('classify.html', image=image, output=output, form=form)
+  
