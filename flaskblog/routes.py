@@ -114,12 +114,23 @@ def classify():
         if form.img.data:
             picture_file = save_picture(form.img.data)
         # filestr = form.img.data.filename
-        f = Fashion(img=picture_file)
+        output = FashionClassifier.classifier(picture_file)
+        f = Fashion(img=picture_file, catg=output)
         db.session.add(f)
         db.session.commit()
         # flash('Image uploaded Successfully')
-        output = FashionClassifier.classifier(picture_file)
         
         image = url_for('static', filename='profile_pics/'+picture_file)
     return render_template('classify.html', image=image, output=output, form=form)
   
+
+
+@app.route("/history")
+def history():
+      history = Fashion.query.order_by(Fashion.id.desc()).all()
+      images = []
+      for i in range(len(history)):
+          img = url_for('static', filename='profile_pics/'+history[i].img)
+          history[i].img = img
+      
+      return render_template('history.html', history=history, images=images)
