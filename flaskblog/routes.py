@@ -9,26 +9,12 @@ from flask_login import login_user, current_user, logout_user, login_required
 from flaskblog.models import User,Post,Fashion
 from flaskblog.core import FashionClassifier
 
-posts = [
-    {
-            'author' : 'corey schafer',
-            'title' : 'BLOG post 1',
-            'content' : 'First post content',
-            'date_posted' : 'April 20, 2018'
-    },
-    {
-            'author' : 'Mohammed Rizwan',
-            'title' : 'BLOG post 2',
-            'content' : '2nd post content',
-            'date_posted' : 'April 20, 2018'
-    }
-]
 
 
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html', posts= posts)
+    return render_template('home.html')
 
 @app.route("/register", methods=['GET','POST'])
 def register():
@@ -105,7 +91,7 @@ def account():
 
 
 @app.route("/classify", methods=['GET','POST'])
-# @login_required
+@login_required
 def classify():
     output = "image not found"
     image = 'no_image'

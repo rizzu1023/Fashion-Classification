@@ -132,7 +132,8 @@ a.article-title:hover {
 
 
 .intro-section{
-  padding: 40px 0;
+  padding: 110px 0;
+  /* height: 60vh; */
   /* background: lightgray; */
 }
 
